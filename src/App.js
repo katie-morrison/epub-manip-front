@@ -215,4 +215,8 @@ function send() {
   });
 }
 
+console.log(process.env)
+console.log(`Sending requests to ${backend}`)
+
+
 export default App;
