@@ -10,6 +10,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <p>Oh no!</p>
         <p>Files:</p>
         <div id="fileContainer"></div>
         <button id="addFile" type="button" onClick={add_file_input}>Add file</button>
