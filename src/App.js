@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import ChapterContainer from './components/ChapterContainer';
 import NonChapterContainer from './components/NonChapterContainer';
 import ReplacementContainer from './components/ReplacementContainer'
-import backend from './config/backend'
 
 import axios from 'axios';
 
@@ -45,6 +44,7 @@ function App() {
   );
 }
 
+const backend = process.env.REACT_APP_BACKEND
 let nextFileID = 0
 let nextChapterID = 1
 let nextNonChapterID = 1
@@ -215,7 +215,6 @@ function send() {
   });
 }
 
-console.log(process.env)
 console.log(`Sending requests to ${backend}`)
 
 
