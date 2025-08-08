@@ -12,7 +12,6 @@ jobs:
       - name: Test
         run: |
           npm install
-          npx -v
           npm test
 
       - name: Build
