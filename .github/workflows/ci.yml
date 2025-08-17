@@ -1,12 +1,13 @@
-name: Deploy Worker
 on:
+  pull_request:
   push:
-    branches: [main]
+      branches: [main, development]
 
 jobs:
-  deploy:
+  ci_dev:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    environment: Development
+    if: github.ref == 'refs/heads/development'
     steps:
       - uses: actions/checkout@v4
       - name: Test
@@ -14,9 +15,26 @@ jobs:
           npm install
           npm test
           npm run build
-
-      - name: Build
+      - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: 'workers/development'
+  ci_prod:
+    runs-on: ubuntu-latest
+    environment: Production
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test
+        run: |
+          npm install
+          npm test
+          npm run build
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: 'workers/production'

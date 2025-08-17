@@ -2,8 +2,8 @@
     "name": "epub-manip-front",
     "compatibility_date": "2025-08-07",
     "assets": {
-        "directory": "./build",
+        "directory": "../../build",
         "not_found_handling": "single-page-application"
     },
-    "main": "./workers/app.js"
+    "main": "../app.js"
 }
