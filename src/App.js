@@ -11,7 +11,6 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>Files:</p>
-        <p>This shouldnt be in production still</p>
         <div id="fileContainer"></div>
         <button id="addFile" type="button" onClick={add_file_input}>Add file</button>
         <p>Options:</p>
