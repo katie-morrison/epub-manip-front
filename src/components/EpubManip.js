@@ -7,10 +7,11 @@ import { getFileExtension } from '../util/file-functions';
 function EpubManip(props) {
     useEffect(() => {
         fileOptions = props.options
+        document.title = 'Epub Upload'
     }, [props])
     return (
         <div>
-            <p>Files:</p>
+            <h1>Files:</h1>
             <div id="fileContainer"></div>
             <button id="addFile" type="button" onClick={add_file_input}>Add file</button>
             <div>
@@ -19,6 +20,7 @@ function EpubManip(props) {
             </div>
             <button type="button" onClick={send}>Merge</button>
             <p>The purpose of this page is to help merge epub files representing individual, serialized chapters into one epub file. Some light editing is also supported.</p>
+            <br />
             <p>Please note, this is an ongoing project, and due to structural quirks, some epubs may not currently work properly. If you do not have epub files, but would like to play around regardless, you can download a set of samples below:</p>
             <button type="button" onClick={downloadDemoFiles}>Download Demo Files</button>
         </div>

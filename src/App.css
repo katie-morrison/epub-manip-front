@@ -8,13 +8,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(5px + 2vmin);
   color: white;
 }
 
 .container {
   display: flex;
+  justify-content: center;
 }
 
 .options-block {
@@ -24,4 +24,32 @@
 
 label {
   font-size: calc(3px + 1vmin);
+}
+
+.link-style {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: blue;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  font-size: .75em;
+}
+
+.link-style + .link-style::before {
+  content: "|";
+  margin: 0 8px;
+  color: gray;
+}
+
+p {
+  font-size: .85em;
+  margin: 0 10%;
+  text-align: left;
+}
+
+.navigation-container {
+  margin-top: 10px
 }
