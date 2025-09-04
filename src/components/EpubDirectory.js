@@ -13,10 +13,10 @@ function EpubDirectory() {
     return (
         <div>
             <header className='App-header'>
-                <div>
-                    <button onClick={display_main}>Main</button>
-                    <button onClick={display_settings}>Settings</button>
-                    <button onClick={display_diagnostics}>Epub Diagnostics</button>
+                <div className='navigation-container'>
+                    <button className='link-style' onClick={display_main}>Main</button>
+                    <button className='link-style' onClick={display_settings}>Settings</button>
+                    <button className='link-style' onClick={display_diagnostics}>Epub Diagnostics</button>
                 </div>
                 <div id="epubDirectoryContainer">
                     <EpubManip options={fileOptions} />

@@ -1,10 +1,15 @@
+import { useEffect } from 'react'
 import axios from 'axios'
 
 import { getFileExtension } from "../util/file-functions"
 
 function EpubDiagnostics() {
+    useEffect(() => {
+        document.title = 'Epub Diagnostics'
+    })
     return (
         <div>
+            <h1>Diagnostics: </h1>
             <input id='diagnosticFile' type='file'></input>
             <button type='button' onClick={getDiagnostics}>Diagnose</button>
             <ol id='epubFiles'></ol>
