@@ -81,7 +81,7 @@ function send() {
     alert('No .epubs uploaded!')
     return
   }
-  fileOptions.outputName = outputName
+  fileOptions['outputName'] = outputName
   formData.append('fileOptions',JSON.stringify(fileOptions))
   axios.post(`${backend}/uploads`, formData, {
     headers: {
