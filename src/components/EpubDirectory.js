@@ -29,7 +29,8 @@ function EpubDirectory() {
 let directoryContainer
 const fileOptions = {
     chapterFormat: [{id: 0, format: 'body'}],
-    nonChapterXHTML: [{id: 0, format: 'body', descriptor: 'Title Page', isBeforeChapters: true}],
+    nonChapterXHTML: [{id: 0, fileName: 'body'}],
+    xhtmlNav: [{id: 0, format: 'contents'}, {id: 1, format: 'nav'}],
     replacements: []
   }
 
@@ -52,13 +53,16 @@ function updateOptions() {
     let bodyFormatContainer = document.querySelector('#bodyFormatContainer')
     let nonBodyFormatContainer = document.querySelector('#nonBodyFormatContainer')
     let replacementsContainer = document.querySelector('#replacementsContainer')
-    if (bodyFormatContainer && nonBodyFormatContainer && replacementsContainer) {
+    let navsContainer = document.querySelector('#navsContainer')
+    if (bodyFormatContainer && nonBodyFormatContainer && replacementsContainer && navsContainer) {
         let newChapterFormats = []
         let newNonBodyFormats = []
         let newReplacements = []
+        let newNavs = []
         let chapterFormats = bodyFormatContainer.querySelectorAll('.chapterFormat')
-        let nonBodyFormats = nonBodyFormatContainer.querySelectorAll('.nonChapterField')
+        let nonBodyFormats = nonBodyFormatContainer.querySelectorAll('.nonChapterFileName')
         let replacements = replacementsContainer.querySelectorAll('.replaceField')
+        let navs = navsContainer.querySelectorAll('.navFormat')
         for (let chapterFormat of chapterFormats) {
             if (chapterFormat.value) {
                 let id = parseInt(chapterFormat.id.replace('chapterFormat', ''))
@@ -66,12 +70,9 @@ function updateOptions() {
             }
         }
         for (let nonBodyFormat of nonBodyFormats) {
-            let format = nonBodyFormat.querySelector('.nonChapterFileName')
-            let descriptor = nonBodyFormat.querySelector('.descriptor')
-            if (format.value && descriptor.value) {
-                let id = parseInt(format.id.replace('nonChapterFileName', ''))
-                let isBeforeChapters = nonBodyFormat.querySelector('.beforeChapterCheck')
-                newNonBodyFormats.push({id: id, format: format.value, descriptor: descriptor.value, isBeforeChapters: isBeforeChapters.checked})
+            if (nonBodyFormat.value) {
+                let id = parseInt(nonBodyFormat.id.replace('nonChapterFileName', ''))
+                newNonBodyFormats.push({id: id, fileName: nonBodyFormat.value})
             }
         }
         for (let replacement of replacements) {
@@ -82,9 +83,16 @@ function updateOptions() {
                 newReplacements.push({id: id, before: before.value, after: after.value})
             }
         }
+        for (let nav of navs) {
+            if (nav.value) {
+                let id = parseInt(nav.id.replace('navFormat', ''))
+                newNavs.push({id: id, format: nav.value})
+            }
+        }
         fileOptions.chapterFormat = newChapterFormats
         fileOptions.nonChapterXHTML = newNonBodyFormats
         fileOptions.replacements = newReplacements
+        fileOptions.xhtmlNav = newNavs
     }
 }
 
